@@ -1,62 +1,222 @@
 <!doctype html>
-<html lang="en">
+<html lang="hu">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nagy Levi Marketing - Több ügyfél. Több bevétel. Garantáltan. | Budapest</title>
-    <meta name="description" content="Performance marketing ügynökség Budapesten. Facebook hirdetések, Google Ads, SEO szolgáltatások helyi vállalkozásoknak. 14 napos garancia." />
+    <title>Nagy Levi Marketing — Több ügyfél. Több bevétel. Garantáltan. | Budapest</title>
+    <meta name="description" content="Performance marketing ügynökség Budapesten. Facebook hirdetések, Google Ads, SEO szolgáltatások helyi vállalkozásoknak. 30 napos garancia." />
     <meta name="keywords" content="marketing ügynökség Budapest, Facebook hirdetések, Google Ads, SEO Budapest, weboldal készítés, performance marketing" />
     <meta name="author" content="Nagy Levi Marketing" />
-    
-    <!-- Local Business Meta Tags -->
+
+    <!-- Geo -->
     <meta name="geo.region" content="HU-BU" />
     <meta name="geo.placename" content="Budapest" />
     <meta name="geo.position" content="47.4979;19.0402" />
     <meta name="ICBM" content="47.4979, 19.0402" />
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:type" content="business.business" />
-    <meta property="og:title" content="Nagy Levi Marketing - Több ügyfél. Több bevétel. Garantáltan. | Budapest" />
-    <meta property="og:description" content="Performance marketing ügynökség Budapesten. Facebook hirdetések, Google Ads, SEO szolgáltatások helyi vállalkozásoknak. 14 napos garancia." />
-    <meta property="og:url" content="https://nagylevimaketing.hu" />
+
+    <!-- Canonical + Hreflang -->
+    <link rel="canonical" href="https://levinagymarketing.com" />
+    <link rel="alternate" hreflang="hu" href="https://levinagymarketing.com" />
+    <link rel="alternate" hreflang="en" href="https://levinagymarketing.com/en" />
+    <link rel="alternate" hreflang="x-default" href="https://levinagymarketing.com" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Nagy Levi Marketing — Több ügyfél. Több bevétel. Garantáltan." />
+    <meta property="og:description" content="Performance marketing ügynökség Budapesten. Facebook hirdetések, Google Ads, SEO helyi vállalkozásoknak. 30 napos garancia." />
+    <meta property="og:url" content="https://levinagymarketing.com" />
     <meta property="og:site_name" content="Nagy Levi Marketing" />
     <meta property="og:locale" content="hu_HU" />
-    <meta property="business:contact_data:street_address" content="Példa utca 123" />
-    <meta property="business:contact_data:locality" content="Budapest" />
-    <meta property="business:contact_data:postal_code" content="1234" />
-    <meta property="business:contact_data:country_name" content="Hungary" />
-    <meta property="business:contact_data:phone_number" content="+36-30-123-4567" />
-    <meta property="business:contact_data:email" content="info@nagylevimaketing.hu" />
-    
-    <!-- Twitter Card Meta Tags -->
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Nagy Levi Marketing - Több ügyfél. Több bevétel. Garantáltan. | Budapest" />
-    <meta name="twitter:description" content="Performance marketing ügynökség Budapesten. Facebook hirdetések, Google Ads, SEO szolgáltatások helyi vállalkozásoknak. 14 napos garancia." />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://nagylevimaketing.hu" />
-    
-    <!-- Hreflang for Multi-language -->
-    <link rel="alternate" hrefLang="hu" href="https://nagylevimaketing.hu" />
-    <link rel="alternate" hrefLang="en" href="https://nagylevimaketing.hu/en" />
-    <link rel="alternate" hrefLang="x-default" href="https://nagylevimaketing.hu" />
-    
-    <!-- Google tag (gtag.js) -->
+    <meta name="twitter:title" content="Nagy Levi Marketing — Több ügyfél. Több bevétel. Garantáltan." />
+    <meta name="twitter:description" content="Performance marketing ügynökség Budapesten. Facebook hirdetések, Google Ads, SEO helyi vállalkozásoknak. 30 napos garancia." />
+
+    <!-- ── JSON-LD Structured Data (HU, static — visible to all crawlers) ── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["LocalBusiness", "ProfessionalService"],
+      "@id": "https://levinagymarketing.com/#organization",
+      "name": "Nagy Levi Marketing",
+      "alternateName": "NLM",
+      "description": "Marketing ügynökség Budapestről. Facebook hirdetések, Google Ads, TikTok hirdetések, SEO optimalizálás és weboldal készítés – több ügyfelet, több bevételt garantálunk 30 napon belül.",
+      "url": "https://levinagymarketing.com",
+      "image": "https://res.cloudinary.com/dduros3xw/image/upload/v1754826429/Win_tdgauq.png",
+      "telephone": "+36706339977",
+      "email": "nlevi@levinagymarketing.com",
+      "foundingDate": "2021",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Budapest",
+        "addressRegion": "Budapest",
+        "addressCountry": "HU"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 47.4979, "longitude": 19.0402 },
+      "areaServed": [
+        { "@type": "Country", "name": "Hungary" },
+        { "@type": "City", "name": "Budapest" }
+      ],
+      "sameAs": ["https://www.instagram.com/nagylevi_marketing/"],
+      "founder": {
+        "@type": "Person",
+        "@id": "https://levinagymarketing.com/#person-nagylevi",
+        "name": "Nagy Levi"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "4",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "author": { "@type": "Person", "name": "Csendes Balázs" },
+          "reviewBody": "Levivel az együttműködés nagyon gördülékenyen ment. Az ügyfelek száma 6 hónap alatt megötszöröződött. Mindenkinek ajánlom, még azoknak is, akik ezen a területen tapasztalatlanok!"
+        },
+        {
+          "@type": "Review",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "author": { "@type": "Person", "name": "Magyar Zsuzsa" },
+          "reviewBody": "Az érdeklődők száma jelentősen megnőtt, és a potenciális ügyfelek megszerzése is jóval költséghatékonyabbá vált – kb. 40%-os megtakarítás."
+        },
+        {
+          "@type": "Review",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "author": { "@type": "Organization", "name": "Gatier Hungary" },
+          "reviewBody": "Az online kampányaink teljes körű tervezése új szintre emelkedett. Jelentősen növekedett az ügyfél-elérésünk és a kampányok hatékonysága."
+        },
+        {
+          "@type": "Review",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+          "author": { "@type": "Organization", "name": "Kolpa San Kft." },
+          "reviewBody": "Jelentős változást tapasztaltunk az online jelenlétünkben. Levi mindig rugalmas és gyors."
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Marketing Szolgáltatások",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Facebook Hirdetések", "description": "Célzott Facebook kampányok helyi vállalkozásoknak." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Hirdetések", "description": "Google Ads kampányok potenciális ügyfelekért." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "TikTok Hirdetések", "description": "Kreatív TikTok hirdetések fiatal célközönség eléréséhez." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO Optimalizálás", "description": "Google első oldalra juttatjuk a weboldalad 90 napon belül, vagy visszaadjuk a pénzed." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Weboldal és Landing Page Készítés", "description": "Konverzióra optimalizált weboldal 14 nap alatt." } }
+        ]
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "https://levinagymarketing.com/#person-nagylevi",
+      "name": "Nagy Levi",
+      "givenName": "Levi",
+      "familyName": "Nagy",
+      "jobTitle": "Marketing Specialista",
+      "description": "2021 óta segíti a helyi vállalkozásokat több ügyfél megszerzésében Facebook, Google és TikTok hirdetésekkel, SEO-val és weboldal készítéssel Budapestről.",
+      "url": "https://levinagymarketing.com",
+      "email": "nlevi@levinagymarketing.com",
+      "telephone": "+36706339977",
+      "image": "https://res.cloudinary.com/dduros3xw/image/upload/v1754826429/Win_tdgauq.png",
+      "sameAs": ["https://www.instagram.com/nagylevi_marketing/"],
+      "worksFor": { "@type": "Organization", "@id": "https://levinagymarketing.com/#organization" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Budapest", "addressCountry": "HU" }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://levinagymarketing.com/#website",
+      "url": "https://levinagymarketing.com",
+      "name": "Nagy Levi Marketing",
+      "description": "Marketing ügynökség Budapest – Facebook hirdetések, Google Ads, SEO, weboldal készítés",
+      "inLanguage": ["hu", "en"],
+      "publisher": { "@id": "https://levinagymarketing.com/#organization" }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Mennyi kerül egy Facebook hirdetés Budapesten?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A Facebook hirdetések ára Magyarországon általában havi 50 000–500 000 Ft között mozog a hirdetési büdzsére vonatkozóan. A Nagy Levi Marketingnél átlátható árazással és 30 napos garanciával dolgozunk – ha 30 napon belül nem látod az eredményt, visszaadjuk a kezelési díjat." }
+        },
+        {
+          "@type": "Question",
+          "name": "Mennyi idő alatt látok eredményt a Google Ads hirdetéseimből?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Google Ads kampányoknál általában 1–2 héten belül megjelennek az első megkeresések. SEO esetén 90 napon belül garantáljuk a TOP 10 helyezést Google-n, vagy visszaadjuk a pénzed." }
+        },
+        {
+          "@type": "Question",
+          "name": "Mit jelent a 30 napos garancia?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Ha 30 napon belül nem látod a megbeszélt eredményeket a kampányodban, visszatérítjük a teljes kezelési díjat. Ez a garancia minden új ügyfelünkre vonatkozik, kötelezettség nélkül." }
+        },
+        {
+          "@type": "Question",
+          "name": "Milyen vállalkozásoknak ajánlott a Nagy Levi Marketing?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Főként helyi szolgáltatóknak segítünk: szépségszalonoknak, fogászatoknak, autósiskoláknak, fitnesztermeknek és online vállalkozásoknak. Ügyfeleinknél az első hónapban átlagosan 181 megkeresést értünk el." }
+        },
+        {
+          "@type": "Question",
+          "name": "Hogyan lehet felvenni a kapcsolatot a Nagy Levi Marketinggel?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Telefonon a +36 70 633 9977-es számon, emailben az nlevi@levinagymarketing.com címen, vagy a weboldalon lévő kapcsolatfelvételi űrlapon. Válasz 24 órán belül garantált, kötelezettség nélkül." }
+        },
+        {
+          "@type": "Question",
+          "name": "Kell-e már meglévő weboldal a hirdetések futtatásához?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nem szükséges. Weboldalt és landing page-t is készítünk 14 napon belül, konverzióra optimalizálva, hogy a hirdetések a lehető legtöbb ügyfelet hozzák." }
+        }
+      ]
+    }
+    </script>
+    <!-- ── End JSON-LD ── -->
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1721756049377027');
+    fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7WSJSF61VD"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-7WSJSF61VD');
     </script>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   </head>
   <body>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1721756049377027&ev=PageView&noscript=1" /></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

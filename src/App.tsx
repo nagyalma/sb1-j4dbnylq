@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Phone, Mail, Instagram, Globe, Search, TrendingUp, Facebook, MessageCircle, CheckCircle, Star, Clock, Shield, ArrowRight, ChevronRight } from 'lucide-react';
 import LocalSEOHead from './components/LocalSEOHead';
 import PrivacyPolicy from './components/PrivacyPolicy';
-import LeadMagnetPopup from './components/LeadMagnetPopup';
 
 // ── Animation utilities ────────────────────────────────────────────────────
 
@@ -96,8 +95,14 @@ function buildSchemas(language: 'hu' | 'en') {
     ],
     sameAs: ['https://www.instagram.com/nagylevi_marketing/'],
     founder: { '@type': 'Person', '@id': `${baseUrl}/#person-nagylevi`, name: 'Nagy Levi' },
-    aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', reviewCount: '3', bestRating: '5', worstRating: '1' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', reviewCount: '4', bestRating: '5', worstRating: '1' },
     review: [
+      {
+        '@type': 'Review',
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+        author: { '@type': 'Person', name: 'Csendes Balázs' },
+        reviewBody: 'Levivel az együttműködés nagyon gördülékenyen ment. Az ügyfelek száma 6 hónap alatt megötszöröződött. Mindenkinek ajánlom, még azoknak is, akik ezen a területen tapasztalatlanok!',
+      },
       {
         '@type': 'Review',
         reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
@@ -208,8 +213,6 @@ function App() {
   const [showPortfolioModal, setShowPortfolioModal] = useState(false);
   const [showFloatingCTA, setShowFloatingCTA] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [showLeadMagnet, setShowLeadMagnet] = useState(false);
-  const [leadMagnetDismissed, setLeadMagnetDismissed] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -258,19 +261,9 @@ function App() {
     return () => { window.removeEventListener('mousemove', move); clearTimeout(tid); };
   }, []);
 
-  useEffect(() => {
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 10 && !leadMagnetDismissed) setShowLeadMagnet(true);
-    };
-    const timer = setTimeout(() => { if (!leadMagnetDismissed) setShowLeadMagnet(true); }, 5000);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    return () => { document.removeEventListener('mouseleave', handleMouseLeave); clearTimeout(timer); };
-  }, [leadMagnetDismissed]);
-
-  const dismissLeadMagnet = () => { setShowLeadMagnet(false); setLeadMagnetDismissed(true); };
 
   useEffect(() => {
-    const timer = setInterval(() => { setActiveTestimonial(prev => (prev + 1) % 3); }, 5000);
+    const timer = setInterval(() => { setActiveTestimonial(prev => (prev + 1) % 4); }, 4000);
     return () => clearInterval(timer);
   }, []);
 
@@ -313,7 +306,8 @@ function App() {
         title: 'Megtöltjük a naptáradat új ügyfelekkel 30 nap alatt',
         titleHighlight: '— Garantáltan',
         subtitle: 'Hirdetéseket és weboldalakat készítünk, amik tényleg működnek. Több megkeresés, több bevétel, kevesebb stressz.',
-        cta: 'Ingyenes konzultációt kérek',
+        ctaAds: 'Több ügyfelet szeretnék hirdetéssel',
+        ctaAI:  'Automatizálni szeretném a vállalkozásom',
         ctaSub: 'Válasz 24 órán belül • Kötelezettség nélkül',
         stats: [{ num: '181+', label: 'Megkeresés / hó' }, { num: '3.5×', label: 'Több eredmény' }, { num: '730', label: 'Regisztráció 19 nap alatt' }]
       },
@@ -337,6 +331,7 @@ function App() {
       testimonials: {
         title: 'Mit mondanak rólunk ügyfeleink',
         items: [
+          { text: 'Levivel az együttműködés nagyon gördülékenyen ment. Pontos visszajelzéseket adott a kampány eredményéről, hasznos tanácsokat adott a kampányok sikeresebbé tételéhez. Az ügyfelek száma 6 hónap alatt megötszöröződött, nem hittem volna, hogy ennyi idő alatt ez lehetséges. Mindenkinek ajánlom, még azoknak is, akik ezen a területen tapasztalatlanok!', author: 'Csendes Balázs', role: 'Route11 Autósiskola', initials: 'CB' },
           { text: 'Mióta Levire bíztam a marketinges tevékenységeim kezelését, az érdeklődők száma jelentősen megnőtt, és a potenciális ügyfelek megszerzése is jóval költséghatékonyabbá vált (kb. 40%-os megtakarítás). Levi folyamatosan figyelemmel kíséri az online kampányok teljesítését, és amikor szükséges, azonnal reagál.', author: 'Magyar Zsuzsa', role: 'Sminktetoválás', initials: 'MZ' },
           { text: 'Levi közreműködésével az online kampányaink teljes körű tervezése új szintre emelkedett. A kampányok során Levi rugalmasan alkalmazkodik az igényeinkhez. Az együttműködésünk eredményeképp jelentősen növekedett az ügyfél-elérésünk és a kampányok hatékonysága.', author: 'Gatier Hungary', role: 'Reklámügynökség', initials: 'GH' },
           { text: 'Amióta Levi készíti a közösségi média felületeink tartalmait, jelentős változást tapasztaltunk az online jelenlétünkben. A tartalomgyártás során Levi mindig rugalmas és gyors, így időben és a legmagasabb minőségben kapjuk meg a szükséges anyagokat.', author: 'Kolpa San Kft.', role: 'Vállalkozás', initials: 'KS' }
@@ -378,7 +373,8 @@ function App() {
         title: "We'll Fill Your Calendar with New Customers in 30 Days",
         titleHighlight: '— Guaranteed',
         subtitle: 'We create ads and websites that actually work. More leads, more revenue, less stress.',
-        cta: 'Get a Free Consultation',
+        ctaAds: 'I want more clients with ads',
+        ctaAI:  'I want to automate my business',
         ctaSub: 'Response within 24 hours • No obligation',
         stats: [{ num: '181+', label: 'Leads per month' }, { num: '3.5×', label: 'More results' }, { num: '730', label: 'Registrations in 19 days' }]
       },
@@ -402,6 +398,7 @@ function App() {
       testimonials: {
         title: 'What our clients say about us',
         items: [
+          { text: 'Working with Levi went very smoothly. He gave precise feedback on campaign results and useful advice on how to make campaigns more successful. Our client numbers quintupled in 6 months — I wouldn\'t have believed it was possible in that time. I recommend him to everyone, even those with no experience in online marketing!', author: 'Csendes Balázs', role: 'Route11 Driving School', initials: 'CB' },
           { text: 'Since I entrusted Levi with managing my marketing activities, the number of inquiries has increased significantly, and acquiring potential customers has become much more cost-effective (about 40% savings). Levi continuously monitors the performance of online campaigns and responds immediately when necessary.', author: 'Magyar Zsuzsa', role: 'Permanent Makeup', initials: 'MZ' },
           { text: "With Levi's involvement, the comprehensive planning of our online campaigns has reached a new level. During the campaigns, Levi flexibly adapts to our needs. As a result of our cooperation, our client reach and campaign efficiency have increased significantly.", author: 'Gatier Hungary', role: 'Advertising Agency', initials: 'GH' },
           { text: "Since Levi has been creating content for our social media platforms, we have experienced a significant change in our online presence. During content production, Levi is always flexible and fast, so we receive the necessary materials on time and in the highest quality.", author: 'Kolpa San Kft.', role: 'Business', initials: 'KS' }
@@ -503,11 +500,6 @@ function App() {
 
       <LocalSEOHead language={language} />
 
-      {/* ── Lead Magnet Popup ── */}
-      {showLeadMagnet && (
-        <LeadMagnetPopup language={language} onClose={dismissLeadMagnet} />
-      )}
-
       {/* ── Floating CTA ── */}
       {showFloatingCTA && (
         <div className="fixed bottom-6 right-6 z-50 floating-cta-enter">
@@ -540,6 +532,9 @@ function App() {
               <a href="https://www.instagram.com/nagylevi_marketing/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
+              <a href="https://www.facebook.com/profile.php?id=61555347550023" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                <Facebook className="w-5 h-5" />
+              </a>
               <button onClick={toggleLanguage} className="flex items-center space-x-1 text-slate-400 hover:text-white transition-colors text-sm">
                 <span>{language === 'hu' ? '🇺🇸' : '🇭🇺'}</span>
                 <span className="font-medium">{language === 'hu' ? 'EN' : 'HU'}</span>
@@ -566,10 +561,21 @@ function App() {
             <h1 style={fadeUp(mounted, 100)} className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-3 tracking-tight">{t.hero.title}</h1>
             <h1 style={fadeUp(mounted, 200)} className="text-4xl md:text-5xl lg:text-6xl font-black text-violet-400 leading-tight mb-6 tracking-tight">{t.hero.titleHighlight}</h1>
             <p style={fadeUp(mounted, 300)} className="text-lg md:text-xl text-slate-300 leading-relaxed mb-8 max-w-2xl">{t.hero.subtitle}</p>
-            <div style={fadeUp(mounted, 400)} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-12">
-              <a href="#contact" className="group inline-flex items-center px-8 py-4 bg-violet-500 hover:bg-violet-400 text-white font-semibold rounded-lg transition-all text-lg shadow-xl shadow-violet-500/20 hover:shadow-violet-500/40 hover:scale-[1.02]">
-                {t.hero.cta}<ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
+            <div style={fadeUp(mounted, 400)} className="flex flex-col gap-3 mb-12 max-w-xl">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href={language === 'hu' ? '/fizetett-hirdetesek' : '/en/paid-ads'}
+                  className="group inline-flex items-center justify-center px-6 py-4 bg-violet-500 hover:bg-violet-400 text-white font-semibold rounded-lg transition-all shadow-xl shadow-violet-500/20 hover:shadow-violet-500/40 hover:scale-[1.02] text-sm sm:text-base"
+                >
+                  <span className="mr-2">📣</span>{t.hero.ctaAds}<ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+                </a>
+                <a
+                  href={language === 'hu' ? '/ai-automatizalas' : '/en/ai-automation'}
+                  className="group inline-flex items-center justify-center px-6 py-4 bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-violet-500/50 text-white font-semibold rounded-lg transition-all hover:scale-[1.02] text-sm sm:text-base"
+                >
+                  <span className="mr-2">🤖</span>{t.hero.ctaAI}<ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+                </a>
+              </div>
               <p className="text-slate-500 text-sm">{t.hero.ctaSub}</p>
             </div>
             {/* ── Social proof row ── */}
@@ -817,24 +823,27 @@ function App() {
             <h2 className="text-3xl md:text-4xl font-bold text-white">{t.testimonials.title}</h2>
           </div>
           <div className="grid lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {t.testimonials.items.map((item, i) => (
-              <div key={i} style={fadeUp(testInView, 100 + i * 100)}>
-                <div className={`bg-slate-700/40 p-7 rounded-2xl border transition-all duration-300 ${activeTestimonial === i ? 'border-violet-500/40 shadow-lg shadow-violet-500/5 -translate-y-1' : 'border-slate-600/50'}`}>
-                  <div className="flex gap-0.5 mb-4">{[...Array(5)].map((_, s) => <Star key={s} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</div>
-                  <p className="text-slate-300 text-sm leading-relaxed mb-6">"{item.text}"</p>
-                  <div className="flex items-center gap-3 pt-4 border-t border-slate-600/50">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-violet-500 to-teal-700 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">{item.initials}</div>
-                    <div>
-                      <p className="font-semibold text-white text-sm">{item.author}</p>
-                      <p className="text-violet-400 text-xs">{item.role}</p>
+            {[0, 1, 2].map((offset) => {
+              const item = t.testimonials.items[(activeTestimonial + offset) % t.testimonials.items.length];
+              return (
+                <div key={`${activeTestimonial}-${offset}`} className="animate-fade-in">
+                  <div className={`bg-slate-700/40 p-7 rounded-2xl border transition-all duration-500 h-full flex flex-col ${offset === 0 ? 'border-violet-500/40 shadow-lg shadow-violet-500/5 -translate-y-1' : 'border-slate-600/50'}`}>
+                    <div className="flex gap-0.5 mb-4">{[...Array(5)].map((_, s) => <Star key={s} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</div>
+                    <p className="text-slate-300 text-sm leading-relaxed mb-6 flex-1">"{item.text}"</p>
+                    <div className="flex items-center gap-3 pt-4 border-t border-slate-600/50">
+                      <div className="w-9 h-9 rounded-full bg-gradient-to-br from-violet-500 to-teal-700 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">{item.initials}</div>
+                      <div>
+                        <p className="font-semibold text-white text-sm">{item.author}</p>
+                        <p className="text-violet-400 text-xs">{item.role}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <div className="flex justify-center gap-2 mt-8">
-            {[0,1,2].map(i => (
+            {t.testimonials.items.map((_, i) => (
               <button key={i} onClick={() => setActiveTestimonial(i)} className={`h-2 rounded-full transition-all duration-300 ${activeTestimonial === i ? 'bg-violet-400 w-6' : 'bg-slate-600 w-2'}`} />
             ))}
           </div>
@@ -910,6 +919,36 @@ function App() {
             >
               {language === 'hu' ? 'Vedd fel a kapcsolatot' : 'Get in touch'}<ArrowRight className="w-4 h-4" />
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="py-20 bg-slate-900">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-12">
+              <p className="text-violet-400 text-xs font-semibold uppercase tracking-widest mb-3">{language === 'hu' ? 'Gyakori kérdések' : 'FAQ'}</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-white">{language === 'hu' ? 'Amit a legtöbben kérdeznek' : 'What people ask most'}</h2>
+            </div>
+            <div className="space-y-4">
+              {(language === 'hu' ? [
+                { q: 'Mennyi kerül egy Facebook hirdetés Budapesten?', a: 'A Facebook hirdetések ára Magyarországon általában havi 50 000–500 000 Ft között mozog a hirdetési büdzsére vonatkozóan. A Nagy Levi Marketingnél átlátható árazással és 30 napos garanciával dolgozunk – ha 30 napon belül nem látod az eredményt, visszaadjuk a kezelési díjat.' },
+                { q: 'Mennyi idő alatt látok eredményt a Google Ads hirdetéseimből?', a: 'Google Ads kampányoknál általában 1–2 héten belül megjelennek az első megkeresések. SEO esetén 90 napon belül garantáljuk a TOP 10 helyezést Google-n, vagy visszaadjuk a pénzed.' },
+                { q: 'Mit jelent a 30 napos garancia?', a: 'Ha 30 napon belül nem látod a megbeszélt eredményeket a kampányodban, visszatérítjük a teljes kezelési díjat. Ez a garancia minden új ügyfelünkre vonatkozik, kötelezettség nélkül.' },
+                { q: 'Milyen vállalkozásoknak ajánlott a Nagy Levi Marketing?', a: 'Főként helyi szolgáltatóknak segítünk: szépségszalonoknak, fogászatoknak, autósiskoláknak, fitnesztermeknek és online vállalkozásoknak. Ügyfeleinknél az első hónapban átlagosan 181 megkeresést értünk el.' },
+              ] : [
+                { q: 'How much does Facebook advertising cost in Budapest?', a: "Facebook advertising in Hungary typically costs between 50,000–500,000 HUF per month in ad spend. At Nagy Levi Marketing we offer transparent pricing with a 30-day guarantee — if you don't see results within 30 days, we refund the management fee." },
+                { q: 'How quickly will I see results from Google Ads?', a: 'Google Ads campaigns typically show initial inquiries within 1–2 weeks. For SEO, we guarantee a TOP 10 Google ranking within 90 days, or your money back.' },
+                { q: 'What does the 30-day guarantee mean?', a: "If you don't see the agreed results within 30 days of your campaign launch, we refund the full management fee. This guarantee applies to all new clients with no strings attached." },
+                { q: 'What types of businesses does Nagy Levi Marketing work with?', a: 'We primarily help local service providers: beauty salons, dental clinics, driving schools, gyms, and online businesses. Our clients average 181 leads in their first month.' },
+              ]).map((item, i) => (
+                <div key={i} className="bg-slate-800/60 border border-slate-700 rounded-xl p-6">
+                  <h3 className="font-bold text-white mb-3">{item.q}</h3>
+                  <p className="text-slate-400 leading-relaxed text-sm">{item.a}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -1014,17 +1053,50 @@ function App() {
 
       {/* ── Footer ── */}
       <footer className="bg-slate-900 border-t border-slate-800 py-12">
-        <div className="container mx-auto px-4 md:px-6 text-center">
-          <div className="text-xl font-bold text-white mb-1">Nagy Levi <span className="text-violet-400">Marketing</span></div>
-          <p className="text-slate-500 text-sm mb-6">{language === 'hu' ? 'Több ügyfél. Több bevétel. Garantáltan.' : 'More Clients. More Revenue. Guaranteed.'}</p>
-          <div className="flex justify-center gap-5 mb-6">
-            <a href="tel:+36706339977" className="text-slate-500 hover:text-white transition-colors text-sm flex items-center gap-1.5"><Phone className="w-4 h-4" /> +36 70 633 9977</a>
-            <a href="mailto:nlevi@levinagymarketing.com" className="text-slate-500 hover:text-white transition-colors text-sm flex items-center gap-1.5"><Mail className="w-4 h-4" /> nlevi@levinagymarketing.com</a>
-            <a href="https://www.instagram.com/nagylevi_marketing/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors"><Instagram className="w-5 h-5" /></a>
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 mb-8">
+              <div>
+                <div className="text-xl font-bold text-white mb-1">Nagy Levi <span className="text-violet-400">Marketing</span></div>
+                <p className="text-slate-500 text-sm mb-4">{language === 'hu' ? 'Több ügyfél. Több bevétel. Garantáltan.' : 'More Clients. More Revenue. Guaranteed.'}</p>
+                <div className="flex gap-4">
+                  <a href="tel:+36706339977" className="text-slate-500 hover:text-white transition-colors text-sm flex items-center gap-1.5"><Phone className="w-4 h-4" /> +36 70 633 9977</a>
+                </div>
+                <div className="flex gap-4 mt-2">
+                  <a href="mailto:nlevi@levinagymarketing.com" className="text-slate-500 hover:text-white transition-colors text-sm flex items-center gap-1.5"><Mail className="w-4 h-4" /> nlevi@levinagymarketing.com</a>
+                </div>
+                <div className="flex gap-4 mt-2">
+                  <a href="https://www.instagram.com/nagylevi_marketing/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors"><Instagram className="w-5 h-5" /></a>
+                  <a href="https://www.facebook.com/profile.php?id=61555347550023" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors"><Facebook className="w-5 h-5" /></a>
+                </div>
+              </div>
+              <div>
+                <h4 className="text-white font-semibold text-sm mb-3 uppercase tracking-wide">{language === 'hu' ? 'Szolgáltatások' : 'Services'}</h4>
+                <ul className="space-y-2">
+                  <li><a href={language === 'hu' ? '/fizetett-hirdetesek' : '/en/paid-ads'} className="text-slate-500 hover:text-violet-400 transition-colors text-sm">{language === 'hu' ? 'Fizetett Hirdetések' : 'Paid Ads'}</a></li>
+                  <li><a href={language === 'hu' ? '/ai-automatizalas' : '/en/ai-automation'} className="text-slate-500 hover:text-violet-400 transition-colors text-sm">{language === 'hu' ? 'AI Automatizálás' : 'AI Automation'}</a></li>
+                  <li><a href="/rolunk" className="text-slate-500 hover:text-violet-400 transition-colors text-sm">{language === 'hu' ? 'Rólunk' : 'About'}</a></li>
+                  <li><a href={language === 'hu' ? '/blog' : '/en/blog'} className="text-slate-500 hover:text-violet-400 transition-colors text-sm">Blog</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-white font-semibold text-sm mb-3 uppercase tracking-wide">{language === 'hu' ? 'Iparágak' : 'Industries'}</h4>
+                <ul className="space-y-2">
+                  <li><a href="/szepsegszalon-marketing" className="text-slate-500 hover:text-violet-400 transition-colors text-sm">Szépségszalon Marketing</a></li>
+                  <li><a href="/fogorvos-marketing" className="text-slate-500 hover:text-violet-400 transition-colors text-sm">Fogorvos Marketing</a></li>
+                  <li><a href="/autoskola-marketing" className="text-slate-500 hover:text-violet-400 transition-colors text-sm">Autósiskola Marketing</a></li>
+                  <li><a href="/webaruhaz-marketing" className="text-slate-500 hover:text-violet-400 transition-colors text-sm">Webáruház Marketing</a></li>
+                  <li><a href="/edzoterm-marketing" className="text-slate-500 hover:text-violet-400 transition-colors text-sm">Edzőterem Marketing</a></li>
+                </ul>
+              </div>
+            </div>
+            <div className="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-slate-600 text-xs">© {new Date().getFullYear()} Nagy Levi Marketing. {language === 'hu' ? 'Minden jog fenntartva.' : 'All rights reserved.'}</p>
+              <button onClick={() => setShowPrivacyPolicy(true)} className="text-xs text-slate-600 hover:text-slate-500 transition-colors underline">
+                {language === 'hu' ? 'Adatvédelmi Nyilatkozat' : 'Privacy Policy'}
+              </button>
+            </div>
           </div>
-          <button onClick={() => setShowPrivacyPolicy(true)} className="text-xs text-slate-600 hover:text-slate-500 transition-colors underline">
-            {language === 'hu' ? 'Adatvédelmi Nyilatkozat' : 'Privacy Policy'}
-          </button>
         </div>
       </footer>
     </div>
