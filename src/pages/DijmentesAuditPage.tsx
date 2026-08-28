@@ -148,7 +148,7 @@ const DijmentesAuditPage: React.FC = () => {
               Kérj egy díjmentes elemzést a Google cégprofilodról
             </h1>
             <p className="text-slate-300 text-lg leading-relaxed mb-8">
-              Töltsd ki az űrlapot, és egy személyre szabott elemzést készítünk — amelyben pontosan megmutatjuk, mit kell tenned, hogy az első 3 helyezett közé kerülj a területeden.
+              Töltsd ki az űrlapot, és egy személyre szabott elemzést készítek neked, amelyben megmutatok 3 dolgot, amivel magasabban fogsz rangsorolni, mint jelenleg.
             </p>
             <p className="text-slate-400 text-base leading-relaxed">
               Nincs költség, nincs kötelezettség, nincs tolakodó értékesítési nyomás.<br />
@@ -174,7 +174,7 @@ const DijmentesAuditPage: React.FC = () => {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
                 <input type="text" required placeholder="Teljes neved *" value={form.name} onChange={e => set('name', e.target.value)} className={inputClass} />
-                <input type="email" required placeholder="Üzleti email *" value={form.email} onChange={e => set('email', e.target.value)} className={inputClass} />
+                <input type="email" required placeholder="Email *" value={form.email} onChange={e => set('email', e.target.value)} className={inputClass} />
                 <input type="tel" required placeholder="Telefonszám *" value={form.phone} onChange={e => set('phone', e.target.value)} className={inputClass} />
                 <div className="grid grid-cols-2 gap-6">
                   <input type="text" required placeholder="Weboldal *" value={form.website} onChange={e => set('website', e.target.value)} className={inputClass} />
@@ -215,7 +215,7 @@ const DijmentesAuditPage: React.FC = () => {
               ✓ Az előny
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              De <em className="text-violet-400 not-italic">egyáltalán</em> megéri ezt csinálni?
+              Miért éri meg ezt csinálni?
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -223,7 +223,7 @@ const DijmentesAuditPage: React.FC = () => {
               {
                 icon: <Eye className="w-6 h-6 text-violet-400" />,
                 title: 'Láthatóság',
-                body: 'A keresések 75%-a az első 3 találat valamelyikére kattint. Ha nem vagy ott, gyakorlatilag nem is létzel.',
+                body: 'A keresések 72%-a az első 3 találat valamelyikére kattint. Ha nem vagy ott, gyakorlatilag nem is vesznek észre az emberek.',
               },
               {
                 icon: <Banknote className="w-6 h-6 text-violet-400" />,
