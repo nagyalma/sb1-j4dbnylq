@@ -148,7 +148,7 @@ const DijmentesAuditPage: React.FC = () => {
               Kérj egy díjmentes elemzést a Google cégprofilodról
             </h1>
             <p className="text-slate-300 text-lg leading-relaxed mb-8">
-              Töltsd ki az űrlapot, és egy személyre szabott elemzést készítek neked, amelyben megmutatok 3 dolgot, amivel magasabban fogsz rangsorolni, mint jelenleg.
+              Töltsd ki az űrlapot, és egy személyre szabott elemzést készítek neked. Ebben az elemzésben megmutatok 3 konkrét tanácsot, amivel magasabban fogsz rangsorolni, mint jelenleg.
             </p>
             <p className="text-slate-400 text-base leading-relaxed">
               Nincs költség, nincs kötelezettség, nincs tolakodó értékesítési nyomás.<br />
