@@ -114,9 +114,9 @@ const DijmentesAuditPage: React.FC = () => {
 
   const inputClass = "w-full bg-transparent border-b border-slate-600 focus:border-violet-400 outline-none py-3 text-white placeholder-slate-500 transition-colors text-base";
   const timelineOptions = [
-    { value: 'today', label: 'Ma' },
-    { value: 'tomorrow', label: 'Holnap' },
-    { value: 'weeks', label: 'Néhány héten belül' },
+    { value: 'asap', label: 'Minél hamarabb' },
+    { value: 'weeks', label: '1-2 héten belül' },
+    { value: 'month', label: '1 hónapon belül' },
   ];
 
   const stats = view === 'before' ? beforeStats : afterStats;
