@@ -165,7 +165,7 @@ const DijmentesAuditPage: React.FC = () => {
                 </div>
                 <h2 className="text-2xl font-bold text-white mb-3">Megkaptuk a kérésedet!</h2>
                 <p className="text-slate-400 leading-relaxed">
-                  24 órán belül visszajelzünk az elemzéssel. Addig is nézd meg a blogot — hasznos tippek várnak.
+                  24 órán belül visszajelzünk az elemzéssel.
                 </p>
                 <a href="/blog" className="inline-flex items-center mt-6 px-6 py-3 bg-violet-500 hover:bg-violet-400 text-white font-semibold rounded-lg transition-all text-sm">
                   Blog megtekintése <ArrowRight className="ml-2 w-4 h-4" />
