@@ -177,10 +177,10 @@ const DijmentesAuditPage: React.FC = () => {
                 <input type="email" required placeholder="Üzleti email *" value={form.email} onChange={e => set('email', e.target.value)} className={inputClass} />
                 <input type="tel" required placeholder="Telefonszám *" value={form.phone} onChange={e => set('phone', e.target.value)} className={inputClass} />
                 <div className="grid grid-cols-2 gap-6">
-                  <input type="url" required placeholder="Weboldal *" value={form.website} onChange={e => set('website', e.target.value)} className={inputClass} />
+                  <input type="text" required placeholder="Weboldal *" value={form.website} onChange={e => set('website', e.target.value)} className={inputClass} />
                   <input type="text" required placeholder="Cégnév *" value={form.company} onChange={e => set('company', e.target.value)} className={inputClass} />
                 </div>
-                <input type="url" placeholder="Google Maps URL (nem kötelező)" value={form.mapsUrl} onChange={e => set('mapsUrl', e.target.value)} className={inputClass} />
+                <input type="text" placeholder="Google Maps URL (nem kötelező)" value={form.mapsUrl} onChange={e => set('mapsUrl', e.target.value)} className={inputClass} />
 
                 <div>
                   <p className="text-slate-300 text-sm font-medium mb-4">Mikor szeretnéd megoldani ezt a problémát? *</p>
