@@ -89,7 +89,7 @@ const afterStats = [
 
 const DijmentesAuditPage: React.FC = () => {
   const [form, setForm] = useState({
-    name: '', email: '', phone: '', website: '', company: '', mapsUrl: '', timeline: 'today',
+    name: '', email: '', phone: '', website: '', company: '', mapsUrl: '', timeline: 'asap', city: '',
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [mapsError, setMapsError] = useState(false);
@@ -98,11 +98,12 @@ const DijmentesAuditPage: React.FC = () => {
   const set = (field: string, value: string) => setForm(prev => ({ ...prev, [field]: value }));
 
   const isValidMapsUrl = (url: string) =>
-    url.includes('google.com/maps') || url.includes('maps.app.goo.gl') || url.includes('maps.google');
+    url.includes('google.com/maps') || url.includes('maps.app.goo.gl') || url.includes('maps.google') || url.includes('share.google');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isValidMapsUrl(form.mapsUrl)) { setMapsError(true); return; }
+    if (!form.city) return;
     setMapsError(false);
     setStatus('loading');
     try {
@@ -194,6 +195,18 @@ const DijmentesAuditPage: React.FC = () => {
                     ? <p className="text-red-400 text-xs mt-2">Kérlek adj meg egy érvényes Google Maps linket (google.com/maps vagy maps.app.goo.gl)</p>
                     : <p className="text-slate-600 text-xs mt-2">Keresd meg a céged a Google Térképen, kattints a "Megosztás" gombra, és másold be a linket.</p>
                   }
+                </div>
+
+                <div>
+                  <p className="text-slate-300 text-sm font-medium mb-4">Melyik városban működik a vállalkozásod? *</p>
+                  <div className="flex gap-3 flex-wrap">
+                    {['Budapest', 'Pest megye', 'Egyéb'].map(city => (
+                      <button key={city} type="button" onClick={() => set('city', city)}
+                        className={`px-5 py-2.5 rounded-full text-sm font-semibold border transition-all ${form.city === city ? 'bg-violet-500 border-violet-500 text-white' : 'bg-transparent border-slate-600 text-slate-400 hover:border-slate-400 hover:text-white'}`}>
+                        {city}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <div>
