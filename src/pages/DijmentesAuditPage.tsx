@@ -94,6 +94,7 @@ const DijmentesAuditPage: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [mapsError, setMapsError] = useState(false);
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [privacyOpen, setPrivacyOpen] = useState(false);
   const [view, setView] = useState<'before' | 'after'>('before');
 
   const set = (field: string, value: string) => setForm(prev => ({ ...prev, [field]: value }));
@@ -231,9 +232,9 @@ const DijmentesAuditPage: React.FC = () => {
                   />
                   <span className="text-slate-400 text-sm leading-relaxed">
                     Elolvastam és elfogadom az{' '}
-                    <a href="/adatvedelmi-szabalyzat" target="_blank" rel="noopener noreferrer" className="text-violet-400 hover:text-violet-300 underline">
+                    <button type="button" onClick={() => setPrivacyOpen(true)} className="text-violet-400 hover:text-violet-300 underline">
                       adatvédelmi szabályzatot
-                    </a>
+                    </button>
                     . *
                   </span>
                 </label>
@@ -355,9 +356,36 @@ const DijmentesAuditPage: React.FC = () => {
         </div>
       </section>
 
-      <footer className="border-t border-slate-800 py-8 text-center text-slate-600 text-sm">
-        © {new Date().getFullYear()} Nagy Levi Marketing
+      <footer className="border-t border-slate-800 py-8 text-center text-slate-600 text-sm space-y-2">
+        <div>© {new Date().getFullYear()} Nagy Levi Marketing</div>
+        <button onClick={() => setPrivacyOpen(true)} className="text-slate-500 hover:text-slate-300 underline text-xs transition-colors">
+          Adatvédelmi szabályzat
+        </button>
       </footer>
+
+      {/* Privacy Modal */}
+      {privacyOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70" onClick={() => setPrivacyOpen(false)}>
+          <div className="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-8" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-white font-bold text-xl">Adatvédelmi szabályzat</h2>
+              <button onClick={() => setPrivacyOpen(false)} className="text-slate-400 hover:text-white text-2xl leading-none">&times;</button>
+            </div>
+            <div className="text-slate-300 text-sm leading-relaxed space-y-4">
+              <p><strong className="text-white">Adatkezelő:</strong> Nagy Levi Marketing (nlevi@levinagymarketing.com)</p>
+              <p><strong className="text-white">Kezelt adatok:</strong> Név, email cím, telefonszám, weboldal, cégnév, Google Maps link, város, időtáv.</p>
+              <p><strong className="text-white">Az adatkezelés célja:</strong> Az ingyenes elemzés elkészítése és kapcsolatfelvétel a kért szolgáltatással kapcsolatban.</p>
+              <p><strong className="text-white">Az adatkezelés jogalapja:</strong> Az érintett önkéntes hozzájárulása (GDPR 6. cikk (1) a) pont).</p>
+              <p><strong className="text-white">Adatmegőrzési idő:</strong> Az adatokat az elemzés elvégzéséig, illetve hozzájárulás visszavonásáig kezeljük.</p>
+              <p><strong className="text-white">Adattovábbítás:</strong> Az adatokat harmadik félnek nem adjuk át, kizárólag a szolgáltatás nyújtásához szükséges mértékben kezeljük.</p>
+              <p><strong className="text-white">Jogok:</strong> Bármikor kérheted adataid törlését, módosítását vagy az adatkezelés korlátozását az nlevi@levinagymarketing.com emailcímen.</p>
+            </div>
+            <button onClick={() => setPrivacyOpen(false)} className="mt-8 w-full py-3 bg-violet-500 hover:bg-violet-400 text-white font-semibold rounded-xl transition-all text-sm">
+              Bezárás
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
