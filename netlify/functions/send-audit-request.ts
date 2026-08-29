@@ -49,5 +49,26 @@ export const handler: Handler = async (event) => {
     `,
   });
 
+  // Save to Airtable
+  await fetch('https://api.airtable.com/v0/appumvyUsd6yPjTWS/tblJEBqeFvzSgoTNM', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${process.env.AIRTABLE_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      fields: {
+        'Teljes Név': name,
+        'Email': email,
+        'Telefonszám': phone,
+        'weboldal': website,
+        'Cégnév': company,
+        'Google Maps Link': mapsUrl,
+        'Város': city,
+        'Időtáv': timelineMap[timeline] || timeline,
+      },
+    }),
+  });
+
   return { statusCode: 200, body: JSON.stringify({ success: true }) };
 };
