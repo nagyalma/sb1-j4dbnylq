@@ -93,6 +93,7 @@ const DijmentesAuditPage: React.FC = () => {
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [mapsError, setMapsError] = useState(false);
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [view, setView] = useState<'before' | 'after'>('before');
 
   const set = (field: string, value: string) => setForm(prev => ({ ...prev, [field]: value }));
@@ -221,7 +222,23 @@ const DijmentesAuditPage: React.FC = () => {
                   </div>
                 </div>
 
-                <button type="submit" disabled={status === 'loading'}
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={privacyAccepted}
+                    onChange={e => setPrivacyAccepted(e.target.checked)}
+                    className="mt-1 w-4 h-4 accent-violet-500 cursor-pointer flex-shrink-0"
+                  />
+                  <span className="text-slate-400 text-sm leading-relaxed">
+                    Elolvastam és elfogadom az{' '}
+                    <a href="/adatvedelmi-szabalyzat" target="_blank" rel="noopener noreferrer" className="text-violet-400 hover:text-violet-300 underline">
+                      adatvédelmi szabályzatot
+                    </a>
+                    . *
+                  </span>
+                </label>
+
+                <button type="submit" disabled={status === 'loading' || !privacyAccepted}
                   className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-slate-100 text-slate-900 font-bold rounded-xl transition-all text-base disabled:opacity-60 disabled:cursor-not-allowed">
                   {status === 'loading' ? 'Küldés...' : <> Elemzést kérek <ArrowRight className="w-5 h-5" /></>}
                 </button>
