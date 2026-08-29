@@ -92,12 +92,18 @@ const DijmentesAuditPage: React.FC = () => {
     name: '', email: '', phone: '', website: '', company: '', mapsUrl: '', timeline: 'today',
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [mapsError, setMapsError] = useState(false);
   const [view, setView] = useState<'before' | 'after'>('before');
 
   const set = (field: string, value: string) => setForm(prev => ({ ...prev, [field]: value }));
 
+  const isValidMapsUrl = (url: string) =>
+    url.includes('google.com/maps') || url.includes('maps.app.goo.gl') || url.includes('maps.google');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isValidMapsUrl(form.mapsUrl)) { setMapsError(true); return; }
+    setMapsError(false);
     setStatus('loading');
     try {
       const res = await fetch('/.netlify/functions/send-audit-request', {
@@ -180,7 +186,15 @@ const DijmentesAuditPage: React.FC = () => {
                   <input type="text" required placeholder="Weboldal *" value={form.website} onChange={e => set('website', e.target.value)} className={inputClass} />
                   <input type="text" required placeholder="Cégnév *" value={form.company} onChange={e => set('company', e.target.value)} className={inputClass} />
                 </div>
-                <input type="text" required placeholder="Google Maps URL *" value={form.mapsUrl} onChange={e => set('mapsUrl', e.target.value)} className={inputClass} />
+                <div>
+                  <input type="text" required placeholder="Google Maps link *" value={form.mapsUrl}
+                    onChange={e => { set('mapsUrl', e.target.value); setMapsError(false); }}
+                    className={`${inputClass} ${mapsError ? 'border-red-500' : ''}`} />
+                  {mapsError
+                    ? <p className="text-red-400 text-xs mt-2">Kérlek adj meg egy érvényes Google Maps linket (google.com/maps vagy maps.app.goo.gl)</p>
+                    : <p className="text-slate-600 text-xs mt-2">Keresd meg a céged a Google Térképen, kattints a "Megosztás" gombra, és másold be a linket.</p>
+                  }
+                </div>
 
                 <div>
                   <p className="text-slate-300 text-sm font-medium mb-4">Mikor szeretnéd megoldani ezt a problémát? *</p>
